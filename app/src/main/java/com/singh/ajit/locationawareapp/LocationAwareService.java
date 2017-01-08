@@ -24,10 +24,10 @@ public class LocationAwareService extends IntentService {
     GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
     Location location = geofencingEvent.getTriggeringLocation();
 
-    Geocoder gcd = new Geocoder(this, Locale.getDefault());
+    Geocoder geocoder = new Geocoder(this, Locale.getDefault());
     List<Address> addresses = new ArrayList<>();
     try {
-      addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+      addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
     } catch (IOException e) {
       e.printStackTrace();
     }
